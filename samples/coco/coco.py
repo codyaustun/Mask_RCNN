@@ -86,6 +86,9 @@ class CocoConfig(Config):
     # Number of classes (including background)
     NUM_CLASSES = 1 + 80  # COCO has 80 classes
 
+    #change backbone from resnet 101 which is the default to 50
+    BACKBONE = "resnet50"
+
 
 ############################################################
 #  Dataset
