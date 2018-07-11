@@ -81,10 +81,13 @@ class CocoConfig(Config):
     IMAGES_PER_GPU = 2
 
     # Uncomment to train on 8 GPUs (default is 1)
-    # GPU_COUNT = 8
+    #GPU_COUNT = 8
 
     # Number of classes (including background)
     NUM_CLASSES = 1 + 80  # COCO has 80 classes
+
+    #change backbone from resnet 101 which is the default to 50
+    BACKBONE = "resnet50"
 
 
 ############################################################
@@ -428,6 +431,11 @@ if __name__ == '__main__':
                         metavar="<True|False>",
                         help='Automatically download and unzip MS-COCO files (default=False)',
                         type=bool)
+    parser.add_argument('--gpu', required=False,
+                        default=1,
+                        metavar="<GPU count>",
+                        help='The number of GPUs to be used for training (default=1)',
+                        type=int)
     args = parser.parse_args()
     print("Command: ", args.command)
     print("Model: ", args.model)
@@ -438,7 +446,9 @@ if __name__ == '__main__':
 
     # Configurations
     if args.command == "train":
-        config = CocoConfig()
+    	class TrainingConfig(CocoConfig):
+    		GPU_COUNT = args.gpu
+    	config = TrainingConfig()
     else:
         class InferenceConfig(CocoConfig):
             # Set batch size to 1 since we'll be running inference on
