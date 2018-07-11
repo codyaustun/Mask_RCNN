@@ -15,13 +15,7 @@ if [[ ! -d pycocotools ]]; then
   ln -s cocoapi/PythonAPI/pycocotools/ .
 fi
 
-
-if [[ ! -d $HOME/coco_dataset ]]; then
-  gsutil -m cp -r gs://garden-team-scripts/coco_dataset "$HOME/"
-fi
-
 sudo apt-get install python3-tk
-
 
 if ! (echo "$PYTHONPATH" | grep "Mask_RCNN"); then export PYTHONPATH="$PYTHONPATH:$HOME/Mask_RCNN"; fi;
 cd ~/Mask_RCNN
