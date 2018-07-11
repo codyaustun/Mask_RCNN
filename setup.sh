@@ -1,12 +1,5 @@
 set -e
 
-ROOT="$HOME/Mask_RCNN"
-
-if [[ ! -d $ROOT ]]; then
-  git clone https://github.com/robieta/Mask_RCNN.git
-fi
-cd "$ROOT"
-
 pip install -r requirements.txt
 python3 setup.py install
 
