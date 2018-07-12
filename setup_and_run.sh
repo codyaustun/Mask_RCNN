@@ -1,16 +1,16 @@
 #!/bin/bash
 set -e
 
-pip3 install -r requirements.txt
+pip3 install --user -r requirements.txt
 python3 setup.py install
 
 if [[ ! -d cocoapi ]]; then
   git clone https://github.com/cocodataset/cocoapi.git
 fi
 
-cd cocoapi/PythonAPI
+pushd cocoapi/PythonAPI
 make
-cd ../..
+popd
 
 if [[ ! -d pycocotools ]]; then
   ln -s cocoapi/PythonAPI/pycocotools/ .
