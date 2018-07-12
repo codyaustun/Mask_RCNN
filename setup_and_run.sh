@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-pip3 install --user -r requirements.txt
+pip3 install -r requirements.txt
 python3 setup.py install
 
 if [[ ! -d cocoapi ]]; then
@@ -14,11 +14,6 @@ popd
 
 if [[ ! -d pycocotools ]]; then
   ln -s cocoapi/PythonAPI/pycocotools/ .
-fi
-
-
-if [[ ! -d $HOME/coco_dataset ]]; then
-  gsutil -m cp -r gs://garden-team-scripts/coco_dataset "$HOME/"
 fi
 
 sudo apt-get install python3-tk
